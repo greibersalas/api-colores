@@ -3,7 +3,9 @@ import mongoose, { Schema} from "mongoose";
 const ColorSchema = new Schema({
     id : { type: String, required: true },
     name: { type: String, required: true },
+    year: { type: Number, required: true },
     color: { type: String, required: true},
+    pantone_value:{ type: String, required: true },
     state: { type: Number, min: 0, max: 1, default: 1 },
     createAt: { type: Date, default: Date.now},
     updateAt : { type: Date },

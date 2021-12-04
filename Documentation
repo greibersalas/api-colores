@@ -1,0 +1,119 @@
+Proyecto: Api para obtener los datos de los colores corporativos de la empresa
+
+Tecnología:
+    NodeJS - Express
+Database:
+    MongoDB
+
+Listado de rutas con especificaciones
+
+1. Ruta para obtener la lista de los colores
+
+ruta: /api/color
+method: get
+query opctions: page, limit, format
+    page: Condicional, para obtener los datos de una pagina en especifico, por defecto 1
+    limit: Condicional, cantidad de documentos por pagina, por defecto 5
+    format: Condicional, para el retorno de la información en JSON o XML
+returns:
+    success: status 200
+    {
+        "pages": number,
+        "page": number,
+        "elements": number,
+        "colors": array
+    }
+    error: status 500
+    {
+        message: string
+    }
+
+2. Ruta para insertar un registro
+
+ruta: /api/color
+method: post
+body:
+    {
+        "id": number,
+        "name": string,
+        "year": number,
+        "color": string,
+        "pantone_value": string
+    }
+returns:
+    success: status 201
+        { color: Color }
+    error: status 500
+    {
+        ok: bolean,
+        mensaje: string,
+        errors: string <err>
+    }
+
+3. Obtener los datos de un color por _id
+ruta: /api/color/id
+method: get
+query opctions: format
+    format: Condicional, para el retorno de la información en JSON o XML, default JSON
+returns:
+    success: status 201
+        { color: Color }
+    error: status 500
+    {
+        ok: bolean,
+        mensaje: string,
+        errors: string <err>
+    }
+    error: status 404
+    {
+        ok: booean,
+        mensaje: string,
+        errors:  {message: string }
+    }
+
+4. Editar los datos de un color
+
+ruta: /api/color/id
+method: put
+body:
+    {
+        "id": number,
+        "name": string,
+        "year": number,
+        "color": string,
+        "pantone_value": string
+    }
+returns:
+    success: status 200
+    {
+        "colors": Color
+    }
+    error: status 500
+    {
+        message: string
+    }
+    error: status 404
+    {
+        ok: booean,
+        mensaje: string,
+        errors:  {message: string }
+    }
+
+5. Borrar un color por _id
+ruta: /api/color/id
+method: delete
+returns:
+    success: status 201
+        { ok: boolean }
+    error: status 500
+    {
+        ok: bolean,
+        mensaje: string,
+        errors: string <err>
+    }
+    error: status 404
+    {
+        ok: booean,
+        mensaje: string,
+        errors:  {message: string }
+    }
